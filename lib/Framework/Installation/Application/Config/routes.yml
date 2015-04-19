@@ -1,0 +1,11 @@
+routing_module:
+
+    # Framework
+    home:
+      pattern:    /
+      controller: HomeController:indexAction
+      template:   index.html.twig
+    login:
+      pattern:    /login
+      controller: HomeController:loginAction
+      template:   login.html.twig

@@ -1,0 +1,42 @@
+{
+    "name": "j7mbo/aurex",
+    "homepage": "https://github.com/j7mbo/aurex",
+    "description": "aurex is a merge between the Silex micro-framework and the awesome Auryn dependency injector.",
+    "keywords": ["silex", "skeleton", "dependency injection", "auryn", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Mallison",
+            "email": "jm_cj@hotmail.com",
+            "role": "Creator / Main Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "twig/twig": "1.18.0",
+        "symfony/form": "2.7.*@dev",
+        "rdlowrey/auryn": "~0.14",
+        "silex/silex": "2.0.x-dev#c207787",
+        "monolog/monolog": "1.13.1",
+        "symfony/security": "2.7.*@dev",
+        "symfony/translation": "2.7.*@dev",
+        "symfony/twig-bridge": "2.7.*@dev",
+        "symfony/doctrine-bridge": "2.7.*@dev",
+        "dflydev/doctrine-orm-service-provider": "2.0.0",
+        "useallfive/doctrine-data-fixtures-command": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aurex\\": "lib/",
+            "Test\\": "test/"
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "php lib/Framework/Installation/install.php"
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+# Database settings for the DoctrineOrmModule
+doctrine_orm_module:
+  driver:   pdo_mysql
+  host:     127.0.0.1
+  dbname:   aurex
+  user:     aurex
+  password: aurexdev
+  charset:  utf8
+
+# Logging settings for MonologModule
+monolog_module:
+  log_file: ~
+  log_name: ~
+
+# Dependency Injection mappings for AurynModule
+auryn_module:
+
+  # Objects to 'alias' from abstract / interfaces to concrete implementations
+  alias:
+    Doctrine\ORM\DefaultRepositoryFactory: Doctrine\ORM\RepositoryFactory
+
+  # Any non-silex objects to 'share' around the application (usually alias'd or defined first)
+  share:
+
+  # Delegate objects typehinted for to factories to provide the object when asked for instead
+  delegate:
+
+    # Oh @ocramius, why do you hate us so?
+    Doctrine\ORM\EntityManager: Doctrine\ORM\EntityManager::create
+
+    # Repositories can be dependency injected
+    Aurex\Application\Model\Repository\UserRepository:
+      Doctrine\ORM\Repository\DefaultRepositoryFactory::getRepository:
+        entityName: Aurex\Application\Model\Entity\User
+    Aurex\Application\Model\Repository\RoleRepository:
+      Doctrine\ORM\Repository\DefaultRepositoryFactory::getRepository:
+        entityName: Aurex\Application\Model\Entity\Role

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>LoginPage</title>
+    </head>
+    <body>
+    <p>
+        <strong>LoginPage</strong>
+
+        <br />
+
+        {# Login Form #}
+        {{ form(login_form) }}
+
+        {% if error %}
+            {{ error.message }}
+        {% endif %}
+    </p>
+    <a href="{{ path('home') }}">Return Home</a>
+    </body>
+</html>
+

@@ -1,0 +1,19 @@
+# The Symfony/Security Firewall Settings
+firewall_module:
+  firewalls:
+    default:
+      pattern:   ^/.*$
+      anonymous: true
+      form:
+        login_path: /login
+        check_path: /login_check
+        default_target_path: /
+        always_use_default_target_path': true
+      logout:
+        logout_path:        /logout
+        invalidate_session: false
+  hierarchy:
+    - [ 'ROLE_ADMIN', 'ROLE_USER' ]
+  access_rules:
+    - [ '^/login$', 'IS_AUTHENTICATED_ANONYMOUSLY' ]
+    - [ '^/.+$', 'ROLE_USER' ]

@@ -1,0 +1,24 @@
+# Environment choice - defaults to 'dev', override with your own Environment class and change the directory where you
+# want to load your chosen environments from. In all instances, ~ means default behaviour
+environment:
+  name: dev
+  dir:  ~
+
+# Some objects can't be shared with Auryn Injector until the Silex application has booted (as they won't exist yet) due
+# to how Silex handles things internally; for example: $app['request'] and $app['security.token_storage']
+boot_delay_injections:
+  - request_stack
+  - security.token_storage
+  - security.authorization_checker
+
+# Modules to load that alter the default silex application object. Default provided modules do not need a namespace,
+# custom module will need a fully qualified namespace so the application knows where to find them - note: these are
+# loaded in the order they are placed, so if one requires another to be loaded first place them in the correct order
+modules:
+  - AurynModule
+  - MonologModule
+  - DoctrineORMModule
+  - FormDoctrineModule
+  - RoutingModule
+  - TwigModule
+  - FirewallModule
