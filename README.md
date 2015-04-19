@@ -140,7 +140,7 @@ To access the **user** object within templates, as Silex does not yet provide an
 Environments
 ----
 
-Usually Applications require different environment setups like `dev` and `live`. Aurex comes with a default [DevEnvironment](lib/Framework/Environment/DevEnvironment.php) 
+Usually Applications require different environment setups like "dev" and "live". Aurex comes with a default [DevEnvironment](lib/Framework/Environment/DevEnvironment.php) 
 which sets some xdebug settings if available. The environment is built by an [EnvironmentFactory](lib/Framework/EnvironmentFactory).
 
 You can create your own custom environment by implementing `EnvironmentInterface` and running whatever environment-specific
