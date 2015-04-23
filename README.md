@@ -114,7 +114,7 @@ object needs another object, typehint only for the first one and the dependency 
 one can be injected. This is a really powerful tool to enable you to rapidly develop applications without worrying about 
 how to gain access to the objects you need.
 
-This is a very basic example. For other examples, including aliasing and more, see [EXAMPLE.md] (currently a WIP).
+This is a very basic example. For other examples, including aliasing and more, see [EXAMPLE.md](EXAMPLE.md) (currently a WIP).
 
 Installation
 ---
