@@ -32,10 +32,89 @@ objects (modules).
 You can use this as a standalone framework with which to write good, SOLID code, without using a service locator with 
 which to pull in dependencies, or fork it to see how to get Silex working with the latest symfony components.
 Effectively, this setup allows you to typehint for any object, anywhere, and it will automatically be resolved for you,
-allowing you to focus on *what* you're creating and now *how*.
+allowing you to focus on *what* you're creating and not *how* they are passed to eachother.
   
 Aurex is setup with the latest Symfony 2.7 components, uses Silex 2, and will be maintained to stay up-to-date with 
 Silex releases.
+
+Example
+---
+
+We're going to go through the process of creating a page that displays some data retrieved via an API call. This involves:
+
+- Creating a route
+- Creating it's corresponding controller and template
+- Using a third party library to make the API request in our controller
+- Displaying the data retrieved from the API call in our template
+
+This is a very rudimentary example but the point is to show how easy it is to get an object where you need in the application
+by dependency injecting it without requiring any additional configuration / object registration.
+
+Add a route in `Application/Config/routes.yml`:
+
+```yaml
+hello:
+  pattern:    /hello
+  controller: HelloController:indexAction
+  template:   hello.html.twig
+```
+
+Create the controller as: `Application/Controller/HelloController` with the `indexAction` method. Extend `AbstractController`
+if you want access to commonly used objects like security, the request, session or entity manager.
+
+```php
+namespace Aurex\Application\Controller;
+
+class HelloController extends AbstractController
+{
+    public function indexAction()
+    {
+        /** -- SNIP **/
+    }
+}
+```
+
+Decide that you want to use the Guzzle Http library, for example, so require it with composer:
+
+> require guzzlehttp/guzzle:~5.0
+
+Typehint for GuzzleHttp\Client in your controller to have it automatically passed in for you with no extra configuration
+(thanks, Auryn Injector). Then return the data to the template:
+
+```php
+public function indexAction(GuzzleHttp\Client $client)
+{
+    /** @var $json A json string from the httpbin.org containing the origin ip address **/
+    $json   = $client->get('http://httpbin.org/ip');
+    $data   = json_decode($json, true);
+    $origin = $data['origin'];
+    
+    return [
+        'origin' => $origin
+    ];
+}
+```
+
+Create your template as `web/templates/hello.html.twig`:
+
+```html
+    <p>
+        Hello, you have access to the $origin variable in this Twig template.
+        <br />
+        It's value is: {{ origin }}.
+    <p>
+```
+
+Visit `http://aurex.local/hello` to see your page.
+
+This is basically the same as Silex / Symfony, yet it's much more streamlined and faster. 
+**But what's the point of this**? Any object you need to access, like Guzzle's Http Client, you don't need to set up. 
+You can just typehint for it in any of your controllers and it's passed in for you. This is also *recursive* - so if one 
+object needs another object, typehint only for the first one and the dependency will also be created so that the first 
+one can be injected. This is a really powerful tool to enable you to rapidly develop applications without worrying about 
+how to gain access to the objects you need.
+
+This is a very basic example. For other examples, including aliasing and more, see [EXAMPLE.md] (currently a WIP).
 
 Installation
 ---
