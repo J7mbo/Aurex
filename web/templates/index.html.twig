@@ -15,6 +15,7 @@
             <br />
 
             {% if is_granted('ROLE_USER') %}
+                {% set user = app['security.token_storage'].token.user %}
                 Currently logged in as: {{ user.getEmail() }}, {{ user.getEmail() }}
                 <br />
                 <a href="{{ path('logout') }}">Logout</a>

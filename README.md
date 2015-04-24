@@ -213,8 +213,7 @@ your controller only needs to return an array of data and it will be passed to t
 key, you can typehint for `\Twig_Environment` in your controller and call `::render()` with the relevant parameters to
 render your template. The former method is purely for convenience.
 
-To access the **user** object within templates, as Silex does not yet provide an alternative to the deprecated
-`{{ app.security.token.user }}` method, a global `{{ user }}` object has been [added](https://github.com/J7mbo/Aurex/blob/master/lib/Framework/Module/DelayedInjectionHandler.php#L57).
+To access the **user** object within templates, Silex provides `{{ app['security.token_storage'].token.user }}.
 
 Environments
 ----

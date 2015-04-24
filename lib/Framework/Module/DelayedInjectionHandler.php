@@ -50,11 +50,11 @@ class DelayedInjectionHandler
         }
 
         /**
-         * @todo Remove this when Silex gets it's act together and has app.user globally available
-         *
-         * Also this can only be done here because security / user is only read to be read after boot
+         * This can only be done here because security / user is only read to be read after boot
          */
-        $this->application['twig']->addGlobal('user', $this->application['security.token_storage']->getToken()->getUser());
-        $this->application['twig']->addExtension(new SecurityExtension($this->application['security.authorization_checker']));
+        if (isset($this->application['twig']) && isset($this->application['security.authorization_checker']))
+        {
+            $this->application['twig']->addExtension(new SecurityExtension($this->application['security.authorization_checker']));
+        }
     }
 }
