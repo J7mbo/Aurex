@@ -3,7 +3,6 @@
 namespace Aurex\Application\Controller;
 
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils,
-    Symfony\Component\HttpFoundation\RedirectResponse,
     Aurex\Application\Model\Form\Type\LoginFormType,
     Aurex\Framework\AbstractController;
 
@@ -33,7 +32,7 @@ class HomeController extends AbstractController
         /** If the user is already logged in, forward them to the homepage **/
         if ($this->authorizationChecker->isGranted('IS_AUTHENTICATED_FULLY'))
         {
-            return new RedirectResponse($this->urlGenerator->generate('home'));
+            return $this->redirect('home');
         }
 
         /** Create the form **/
