@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage,
     Symfony\Component\Routing\Generator\UrlGenerator,
     Symfony\Component\HttpFoundation\Session\Session,
     Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\RedirectResponse,
     Aurex\Application\Model\Entity\User,
     Doctrine\ORM\EntityManager;
 
@@ -104,4 +105,18 @@ class AbstractController
     {
         return $this->userProvider->getUser();
     }
+    
+    /**
+     * Returns a RedirectResponse to the given URL.
+     *
+     * @param string $url    The URL to redirect to
+     * @param int    $status The status code to use for the Response
+     *
+     * @return RedirectResponse
+     */
+    public function redirect($url, $status = 302)
+    {
+        return new RedirectResponse($this->urlGenerator->generate($url), $status);
+    }
+    
 }
