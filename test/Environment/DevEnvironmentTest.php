@@ -4,8 +4,8 @@ namespace Test\Environment;
 
 use Aurex\Framework\Environment\EnvironmentFactory,
     Aurex\Framework\Environment\DevEnvironment,
-    Auryn\Provider as Injector,
-    Aurex\Framework\Aurex;
+    Aurex\Framework\Aurex,
+    Auryn\Injector;
 
 /**
  * Class DevEnvironmentTest

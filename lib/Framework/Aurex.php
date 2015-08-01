@@ -4,8 +4,8 @@ namespace Aurex\Framework;
 
 use Aurex\Framework\Environment\EnvironmentInterface,
     Aurex\Framework\Module\ModuleInterface,
-    Auryn\Provider as Injector,
-    Silex\Application;
+    Silex\Application,
+    Auryn\Injector;
 
 /**
  * Class Aurex
