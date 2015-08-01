@@ -15,7 +15,7 @@
         "php": ">=5.5.9",
         "twig/twig": "1.18.0",
         "symfony/form": "2.7.*@dev",
-        "rdlowrey/auryn": "~0.14",
+        "rdlowrey/auryn": "1.0.1",
         "silex/silex": "2.0.x-dev#c207787",
         "monolog/monolog": "1.13.1",
         "symfony/security": "2.7.*@dev",

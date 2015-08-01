@@ -36,9 +36,9 @@ function recurse_copy($source, $destination)
     closedir($dir);
 }
 
-
-
 if (!file_exists(__DIR__ . '/../../Application'))
 {
     recurse_copy(__DIR__  . '/Application', __DIR__ . '/../../Application');
 }
+
+exec('rm -rf ' . __DIR__);

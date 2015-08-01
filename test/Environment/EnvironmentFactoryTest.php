@@ -4,7 +4,7 @@ namespace Test\Environment;
 
 use Aurex\Framework\Environment\EnvironmentFactory,
     Aurex\Framework\Aurex,
-    Auryn\Provider;
+    Auryn\Injector;
 
 /**
  * Class EnvironmentFactoryTest
@@ -87,7 +87,7 @@ class EnvironmentFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testEnvironmentGetterWorksInAurex()
     {
-        $aurex = new Aurex($env = $this->factory->create('dev'), new Provider, []);
+        $aurex = new Aurex($env = $this->factory->create('dev'), new Injector, []);
 
         $this->assertSame($env, $aurex->getEnvironment());
     }
@@ -97,7 +97,7 @@ class EnvironmentFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testNullParamForConfigurationGetsValue()
     {
-        (new Aurex($env = $this->factory->create('dev'), new Provider, []))->getConfiguration('dev');
+        (new Aurex($env = $this->factory->create('dev'), new Injector, []))->getConfiguration('dev');
     }
 
     /**

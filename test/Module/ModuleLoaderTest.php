@@ -7,7 +7,7 @@ use Aurex\Framework\Environment\DevEnvironment,
     Test\Module\Supporting\TestSuccessModule,
     Aurex\Framework\Module\ModuleLoader,
     Aurex\Framework\Aurex,
-    Auryn\Provider;
+    Auryn\Injector;
 
 /**
  * Class ModuleLoaderTest
@@ -83,6 +83,6 @@ class ModuleLoaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function makeAurex($configKey)
     {
-        return new Aurex(new DevEnvironment, new Provider, [$configKey => []]);
+        return new Aurex(new DevEnvironment, new Injector, [$configKey => []]);
     }
 }
