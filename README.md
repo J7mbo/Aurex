@@ -20,7 +20,7 @@ It comes with the following already integrated:
   - Working custom user provider, user entity and login form
   - Twig Templating Engine integration
   - Working firewall - currently, anonymous users can visit `/` and `/login`. Everything else is secured!
-  - Controllers as services (each controller is an object with action methods
+  - Controllers as services (each controller is an object with action methods)
   - Environment specific configuration files
   - "Modules" to group individual service provider integration and setup
   - Recursive auto-wiring dependency injection in every object from your controllers onward
@@ -120,7 +120,7 @@ Installation
 ---
 
 - You need [composer](https://getcomposer.org) installed
-- Run `composer create-project j7mbo/aurex ./ 0.1.0`
+- Run `composer create-project j7mbo/aurex ./ 0.2.0`
 - Create a virtual host (if using apache, else check the silex [web servers documentation](http://silex.sensiolabs.org/doc/web_servers.html)    ):
 
         <VirtualHost aurex.local:80>
