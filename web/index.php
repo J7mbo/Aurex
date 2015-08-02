@@ -28,7 +28,7 @@ $securityFile = $confDir . 'security.yml';
 $config       = array_merge($config, $parserCacher->parseConfig($securityFile));
 
 /** Create the Auryn Dependency Injector **/
-$injector = new \Auryn\Provider(new \Auryn\ReflectionPool);
+$injector = new \Auryn\Injector(new \Auryn\StandardReflector);
 
 /** Create the object that decorates the Silex application **/
 $aurex = new \Aurex\Framework\Aurex($environment, $injector, $config);
