@@ -120,7 +120,7 @@ Installation
 ---
 
 - You need [composer](https://getcomposer.org) installed
-- Run `composer create-project j7mbo/aurex ./ 0.2.0`
+- Run `composer create-project j7mbo/aurex ./ 0.2.1`
 - Create a virtual host (if using apache, else check the silex [web servers documentation](http://silex.sensiolabs.org/doc/web_servers.html)    ):
 
         <VirtualHost aurex.local:80>
