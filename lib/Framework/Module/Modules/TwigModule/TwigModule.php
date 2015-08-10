@@ -2,7 +2,7 @@
 
 namespace Aurex\Framework\Module\Modules\TwigModule;
 
-use Symfony\Component\HttpFoundation\Request,
+use Symfony\Component\HttpFoundation\RequestStack,
     Aurex\Framework\Module\ModuleInterface,
     Silex\Provider\TwigServiceProvider,
     Aurex\Framework\Aurex;
@@ -41,9 +41,9 @@ class TwigModule implements ModuleInterface
         $aurex['twig'] = $aurex->extend('twig', function($twig, $aurex) {
             /** @var \Twig_Environment $twig */
             $twig->addFunction(new \Twig_SimpleFunction('asset', function ($asset) use ($aurex) {
-                /** @var Request $request */
-                $request = $aurex['request'];
-                return sprintf('%s/assets/%s', $request->getBasePath(), ltrim($asset, '/'));
+                /** @var RequestStack $requestStack */
+                $requestStack = $aurex['request_stack'];
+                return sprintf('%s/assets/%s', $requestStack->getCurrentRequest()->getBasePath(), ltrim($asset, '/'));
             }));
 
             return $twig;
