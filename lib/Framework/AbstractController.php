@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage,
     Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException,
     Symfony\Component\Routing\Generator\UrlGenerator,
     Symfony\Component\HttpFoundation\Session\Session,
+    Symfony\Component\HttpFoundation\RequestStack,
     Symfony\Component\HttpFoundation\Request,
     Aurex\Application\Model\Entity\User,
     Doctrine\ORM\EntityManager;
@@ -63,7 +64,7 @@ class AbstractController
     /**
      * @constructor
      *
-     * @param Request              $request
+     * @param RequestStack         $requestStack
      * @param Session              $session
      * @param FormFactory          $formFactory
      * @param UrlGenerator         $urlGenerator
@@ -73,7 +74,7 @@ class AbstractController
      * @param TokenStorage         $tokenStorage
      */
     public function __construct(
-        Request              $request,
+        RequestStack         $requestStack,
         Session              $session,
         FormFactory          $formFactory,
         UrlGenerator         $urlGenerator,
@@ -83,7 +84,7 @@ class AbstractController
         TokenStorage         $tokenStorage
     )
     {
-        $this->request              = $request;
+        $this->request              = $requestStack->getCurrentRequest();
         $this->session              = $session;
         $this->formFactory          = $formFactory;
         $this->urlGenerator         = $urlGenerator;
